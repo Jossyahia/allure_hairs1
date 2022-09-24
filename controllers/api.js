@@ -7,7 +7,7 @@ module.exports = {
     try {
       const posts = await Post.find().sort({ likes: "desc" }).lean();
       res.json(posts);
-      console.log(posts);
+      //console.log(posts);
     } catch (err) {
       console.log(err);
     }
