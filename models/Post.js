@@ -17,10 +17,7 @@ const PostSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  caption: {
-    type: String,
-    required: true,
-  },
+
   likes: {
     type: Number,
     required: true,
