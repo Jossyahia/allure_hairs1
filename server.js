@@ -55,6 +55,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function (req, res, next) {
+  res.locals.user = req.user || null
+  next()
+})
 //Use flash messages for errors, info, ect...
 app.use(flash());
 
@@ -64,6 +68,7 @@ app.use("/api", apisRoutes);
 app.use("/post", postRoutes);
 
 //Server Running
+const PORT = process.env.PORT || 9000
 app.listen(process.env.PORT, () => {
-  console.log("Server is running, you better catch it!");
+  console.log(`Server is running on ${PORT}, you better catch it!`);
 });
