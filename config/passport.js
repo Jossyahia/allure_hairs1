@@ -9,7 +9,7 @@ module.exports = function (passport) {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: 'https://erin-oyster-slip.cyclic.app/auth/google/callback',
+        callbackURL: 'https://admin.allurehairs.com.ng/auth/google/callback',
 
       },
       async ( accessToken, refreshToken, profile, done) => {
