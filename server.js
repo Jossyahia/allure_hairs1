@@ -8,7 +8,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const methodOverride = require("method-override");
 const flash = require("express-flash");
-const logger = require("morgan");
+//const logger = require("morgan");
 require("dotenv").config();
 
 const connectDB = require("./config/database");
@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Logging
-app.use(logger("dev"));
+//app.use(logger("dev"));
 
 //Use forms for put / delete
 app.use(methodOverride("_method"));
