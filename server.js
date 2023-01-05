@@ -17,7 +17,7 @@ const postRoutes = require("./routes/posts");
 const apisRoutes = require("./routes/api");
 
 //Use .env file in config folder
-require("dotenv").config({ path: "./config/.env" });
+require("dotenv").config();
 
 // Passport config
 require("./config/passport")(passport);
@@ -68,7 +68,7 @@ app.use("/api", apisRoutes);
 app.use("/post", postRoutes);
 
 //Server Running
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 2121;
 
 const start = async () => {
   try {
