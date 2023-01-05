@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
 const app = express();
 app.use(cors());
 const mongoose = require("mongoose");
@@ -9,7 +9,7 @@ const MongoStore = require("connect-mongo");
 const methodOverride = require("method-override");
 const flash = require("express-flash");
 const logger = require("morgan");
-require('dotenv').config()
+require("dotenv").config();
 
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
@@ -23,7 +23,7 @@ require("dotenv").config({ path: "./config/.env" });
 require("./config/passport")(passport);
 
 //Connect To Database
-connectDB();
+//connectDB();
 
 //Using EJS for views
 app.set("view engine", "ejs");
@@ -47,7 +47,7 @@ app.use(
     secret: "ovap Technologies dope",
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.DB_STRING, }),
+    store: MongoStore.create({ mongoUrl: process.env.DB_STRING }),
   })
 );
 
@@ -56,9 +56,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(function (req, res, next) {
-  res.locals.user = req.user || null
-  next()
-})
+  res.locals.user = req.user || null;
+  next();
+});
 //Use flash messages for errors, info, ect...
 app.use(flash());
 
@@ -68,7 +68,18 @@ app.use("/api", apisRoutes);
 app.use("/post", postRoutes);
 
 //Server Running
-const PORT = process.env.PORT || 9000
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on Port ${PORT}, you better catch it!`);
-});
+const PORT = process.env.PORT || 3000;
+
+const start = async () => {
+  try {
+    // connectDB
+    await connectDB();
+    app.listen(process.env.PORT, () =>
+      console.log(`Server is runining and listening port ${PORT}...`)
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
